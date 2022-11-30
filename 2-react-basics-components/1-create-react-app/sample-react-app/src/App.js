@@ -2,10 +2,9 @@ import ExpenseItem from "./components/ExpenseItem";
 
 function App() {
   return (
-    <div className="">
-      <h1>Hello world!</h1>
+    <main className="w-[640px] max-w-full p-6 mx-auto">
       <ExpenseItem></ExpenseItem>
-    </div>
+    </main>
   );
 }
 
