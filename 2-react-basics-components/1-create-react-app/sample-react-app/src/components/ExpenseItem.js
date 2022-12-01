@@ -1,33 +1,20 @@
 // !React Code (JavaScript with HTML)
-function ExpenseItem() {
-  // !JavaScript Code
-  const expenseDate = new Date().toLocaleDateString("en-us", {
-    month: "short",
-    day: "numeric",
-  });
-  const expenseTime = new Date().toLocaleString("en-us", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
-  const expenseTitle = "Car Insurance";
-  const expenseAmount = 294.67;
-
+function ExpenseItem(props) {
   // !HTML Code
   return (
     // !{variable} to pass a (JavaScript) code to (HTML) code
-    <div className="bg-zinc-900 p-3 rounded-md flex justify-between items-center">
-      <div className="flex items-center">
-        <div className="justify-self-start grid gap-1 border-r-2 border-zinc-800 pr-3">
-          <span className="text-lg text-blue-500 font-bold">{expenseDate}</span>
-          <span className="text-gray-400">{expenseTime}</span>
-        </div>
-        <div className="px-3">
-          <h1 className="text-lg">{expenseTitle}</h1>
-        </div>
+    <div className="bg-zinc-900 py-3 px-5 rounded-md flex gap-3">
+      <div className="grid gap-1">
+        <span className="text-blue-500 font-medium uppercase">
+          {props.date}
+        </span>
+        <span className="text-sm text-zinc-500">{props.time}</span>
       </div>
-      <div className="justify-self-end bg-blue-500 p-3 rounded-sm">
-        <span>${expenseAmount}</span>
+      <div className="bg-zinc-800 rounded-md p-3 flex flex-1 items-center justify-between">
+        <span>{props.title}</span>
+        <span className="font-medium text-right text-blue-500 w-16">
+          ${props.amount}
+        </span>
       </div>
     </div>
   );
