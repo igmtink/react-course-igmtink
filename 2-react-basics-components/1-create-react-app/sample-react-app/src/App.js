@@ -3,46 +3,35 @@ import ExpenseItem from "./components/ExpenseItem";
 function App() {
   // !JavaScript Code
 
-  // !Date & Time
-  const expenseDate = new Date().toLocaleDateString("en-us", {
-    month: "short",
-    day: "numeric",
-  });
-  const expenseTime = new Date().toLocaleString("en-us", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
-
   // !Object Array
   const expenses = [
     {
       id: "e1",
       title: "Toilet Paper",
       amount: 94.12,
-      date: expenseDate,
-      time: expenseTime,
+      date: new Date(),
+      time: new Date(),
     },
     {
       id: "e2",
       title: "New TV",
       amount: 799.49,
-      date: expenseDate,
-      time: expenseTime,
+      date: new Date(),
+      time: new Date(),
     },
     {
       id: "e3",
       title: "Car Insurance",
       amount: 294.67,
-      date: expenseDate,
-      time: expenseTime,
+      date: new Date(),
+      time: new Date(),
     },
     {
       id: "e4",
       title: "New Desk (Wooden)",
       amount: 450,
-      date: expenseDate,
-      time: expenseTime,
+      date: new Date(),
+      time: new Date(),
     },
   ];
 
