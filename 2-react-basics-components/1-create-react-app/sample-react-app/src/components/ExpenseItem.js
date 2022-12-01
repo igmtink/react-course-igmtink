@@ -1,4 +1,6 @@
+// !React Code (JavaScript with HTML)
 function ExpenseItem() {
+  // !JavaScript Code
   const expenseDate = new Date().toLocaleDateString("en-us", {
     month: "short",
     day: "numeric",
@@ -11,7 +13,9 @@ function ExpenseItem() {
   const expenseTitle = "Car Insurance";
   const expenseAmount = 294.67;
 
+  // !HTML Code
   return (
+    // !{variable} to pass a (JavaScript) code to (HTML) code
     <div className="bg-zinc-900 p-3 rounded-md flex justify-between items-center">
       <div className="flex items-center">
         <div className="justify-self-start grid gap-1 border-r-2 border-zinc-800 pr-3">
