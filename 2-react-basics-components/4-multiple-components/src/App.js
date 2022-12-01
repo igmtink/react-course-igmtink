@@ -1,4 +1,4 @@
-import ExpenseItem from "./components/ExpenseItem";
+import Expenses from "./components/Expenses";
 
 function App() {
   // !JavaScript Code
@@ -37,32 +37,9 @@ function App() {
 
   return (
     <main className="w-[640px] max-w-full p-6 mx-auto">
-      <div className="grid gap-4">
+      <div>
         {/* !Components (Function / Custom HTML) with (Data) from (Object Array) passing by (Props / Function Arguments) */}
-        <ExpenseItem
-          date={expenses[0].date}
-          time={expenses[0].time}
-          title={expenses[0].title}
-          amount={expenses[0].amount}
-        ></ExpenseItem>
-        <ExpenseItem
-          date={expenses[1].date}
-          time={expenses[1].time}
-          title={expenses[1].title}
-          amount={expenses[1].amount}
-        ></ExpenseItem>
-        <ExpenseItem
-          date={expenses[2].date}
-          time={expenses[2].time}
-          title={expenses[2].title}
-          amount={expenses[2].amount}
-        ></ExpenseItem>
-        <ExpenseItem
-          date={expenses[3].date}
-          time={expenses[3].time}
-          title={expenses[3].title}
-          amount={expenses[3].amount}
-        ></ExpenseItem>
+        <Expenses items={expenses} />
       </div>
     </main>
   );
