@@ -2,6 +2,7 @@ import Button from "../UI/Button";
 import Card from "../UI/Card";
 import { useState, useEffect } from "react";
 import Modal from "../UI/Modal";
+import { emailValidation } from "../Helper/EmailValidation";
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -12,7 +13,8 @@ const Login = (props) => {
 
   useEffect(() => {
     setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      // !Helper for (Email Validation)
+      emailValidation(enteredEmail) && enteredPassword.trim().length > 6
     );
     // !Adding ([]) dependencies, everytime we have changes on this two dependencies (Email Input & Password Input) we run again this (useEffect) to validate our form
   }, [enteredEmail, enteredPassword]);
