@@ -60,13 +60,13 @@ const Login = (props) => {
           <form onSubmit={loginHandler} className="grid gap-6">
             <div className="grid gap-3">
               <input
-                className="w-full rounded-sm p-2 bg-neutral-900"
+                className="w-full rounded-md p-2 bg-neutral-900"
                 type="email"
                 placeholder="yourname@email.com"
                 ref={emailInputRef}
               />
               <input
-                className="w-full rounded-sm p-2 bg-neutral-900"
+                className="w-full rounded-md p-2 bg-neutral-900"
                 type="password"
                 placeholder="Password"
                 ref={passwordInputRef}

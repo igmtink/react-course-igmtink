@@ -1,6 +1,6 @@
 const Button = (props) => {
   let classes =
-    "rounded-sm bg-amber-500 text-neutral-900 font-bold " + props.className;
+    "rounded-md bg-amber-500 text-neutral-900 font-bold " + props.className;
 
   return (
     <button
