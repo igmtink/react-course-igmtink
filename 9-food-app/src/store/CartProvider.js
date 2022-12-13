@@ -54,7 +54,7 @@ const cartReducer = (state, action) => {
     );
     const existingItem = state.items[existingCartItemIndex];
 
-    // !Decreate (totalAmount)
+    // !Decrease (totalAmount)
     const updatedTotalAmount = state.totalAmount - existingItem.price;
 
     let updatedItems;
@@ -63,6 +63,7 @@ const cartReducer = (state, action) => {
       // !If the (Cart Item) is only have 1 quantity then if we remove again the 1 quantity we filter the (Cart Array) to display only the item that not equal to our current item that we are removing the quantity
       updatedItems = state.items.filter((item) => item.id !== action.id);
     } else {
+      // !If the (Cart Item) is more than 1 then we only decrease the quantity we will not filtering it
       const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;
