@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*:focus {
+  outline: none;
+}
+
+body {
+  background-color: rgb(23, 23, 23);
+  color: #f9f9f9;
+}
