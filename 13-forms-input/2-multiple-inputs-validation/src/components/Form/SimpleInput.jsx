@@ -3,15 +3,21 @@ import { useState } from 'react'
 
 const SimpleInput = props => {
   const [username, setUsername] = useState('')
-  const [touch, setTouch] = useState(false)
+  const [usernameTouch, setUsernameTouch] = useState(false)
 
   const enteredUsernameIsValid = username.trim() !== ''
-  const usernameInputIsValid = !enteredUsernameIsValid && touch
+  const usernameInputIsValid = !enteredUsernameIsValid && usernameTouch
+
+  const [email, setEmail] = useState('')
+  const [emailTouch, setEmailTouch] = useState(false)
+
+  const enteredEmailIsValid = email.includes('@')
+  const emailInputIsValid = !enteredEmailIsValid && emailTouch
 
   // !Validation for multiple (Inputs)
   let formIsValid = false
 
-  if (enteredUsernameIsValid) {
+  if (enteredUsernameIsValid && enteredEmailIsValid) {
     formIsValid = true
   }
 
@@ -20,25 +26,37 @@ const SimpleInput = props => {
   }
 
   const usernameInputBlurHandler = event => {
-    setTouch(true)
+    setUsernameTouch(true)
+  }
+
+  const emailInputChangeHandler = event => {
+    setEmail(event.target.value)
+  }
+
+  const emailInputBlurHandler = event => {
+    setEmailTouch(true)
   }
 
   const submitHandler = event => {
     event.preventDefault()
 
-    if (!enteredUsernameIsValid) {
-      setTouch(true)
+    if (!enteredUsernameIsValid && !enteredEmailIsValid) {
+      setUsernameTouch(true)
+      setEmailTouch(true)
       return
     }
 
     console.log(username)
+    console.log(email)
     setUsername('')
-    setTouch(false)
+    setEmail('')
+    setUsernameTouch(false)
+    setEmailTouch(false)
   }
 
   return (
     <Card className="bg-neutral-800 p-4">
-      <form onSubmit={submitHandler} className="flex justify-between gap-2">
+      <form onSubmit={submitHandler} className="grid grid-cols-1 gap-4">
         <Input
           className={`bg-neutral-900 p-2 ${
             usernameInputIsValid &&
@@ -49,6 +67,18 @@ const SimpleInput = props => {
             value: username,
             onBlur: usernameInputBlurHandler,
             onChange: usernameInputChangeHandler
+          }}
+        />
+        <Input
+          className={`bg-neutral-900 p-2 ${
+            emailInputIsValid &&
+            'bg-red-500 outline-red-900 outline-2 outline-none placeholder-black'
+          }`}
+          attr={{
+            placeholder: 'Email',
+            value: email,
+            onBlur: emailInputBlurHandler,
+            onChange: emailInputChangeHandler
           }}
         />
         <Button
