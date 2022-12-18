@@ -1,43 +1,33 @@
-import { Section } from '../UI/UIShared'
 import TaskForm from './TaskForm'
-import { useState } from 'react'
+import useHttp from '../../hooks/use-http'
 
 const NewTask = props => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  // !We don't use (useCallback) because we call only this (function) whenever we send on our (Form), we are not inside on (useEffect)
+  const createTask = (task, tasksData) => {
+    // !And get the (ID) from our new (Data)
+    const generatedId = tasksData.name // firebase-specific => "name" contains generated id
+    const createdTask = { id: generatedId, task: task }
 
-  const enteredTaskHandler = async task => {
-    setIsLoading(true)
-    setError(null)
-    try {
-      const response = await fetch(
-        'https://react-project-test-tasks-default-rtdb.firebaseio.com/tasks.json',
-        {
-          method: 'POST',
-          body: JSON.stringify({ task: task }),
-          headers: {
-            'Content-Type': 'application/json'
-          }
+    props.onAddTask(createdTask)
+  }
+
+  const { isLoading, error, sendRequest: sendTaskRequest } = useHttp()
+
+  // !We won't have a problem of an infinite loop, because this request will not be sent whenever the component is re-render but only when this function runs which happens when the form is submitted
+  const enteredTaskHandler = task => {
+    sendTaskRequest(
+      {
+        url: 'https://react-project-test-tasks-default-rtdb.firebaseio.com/tasks.json',
+        method: 'POST',
+        body: { task: task },
+        headers: {
+          'Content-Type': 'application/json'
         }
-      )
-
-      if (!response.ok) {
-        throw new Error('Request Failed!')
-      }
-
-      // !Fetch our (Database) after we add new (Data)
-      const data = await response.json()
-
-      // !And get the (ID) from our new (Data)
-      const generatedId = data.name // firebase-specific => "name" contains generated id
-      const createdTask = { id: generatedId, task: task }
-
-      props.onAddTask(createdTask)
-    } catch (error) {
-      setError(error.message || 'Something went wrong!')
-    }
-
-    setIsLoading(false)
+      },
+      // !(bind()) is for pre-configuring the function
+      // !We pass the (Task) from our (Form) using (bind()), and the other (Data) that we got from (useHttp) will be append on the last arguments
+      createTask.bind(null, task)
+    )
   }
 
   return (
