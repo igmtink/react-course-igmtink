@@ -26,6 +26,19 @@ const cartSlice = createSlice({
       } else {
         existingItem.quantity++
       }
+    },
+    removeItemFromCart(state, action) {
+      const id = action.payload
+      // Find that existed on (Items: []) from (initialState)
+      const existingItem = state.items.find(item => item.id === id)
+
+      // Check if that (Existed Item) is (quantity) is equal to (1)
+      if (existingItem.quantity === 1) {
+        // Filter it on (Items: [])
+        state.items = state.items.filter(item => item.id !== id)
+      } else {
+        existingItem.quantity--
+      }
     }
   }
 })
