@@ -1,5 +1,22 @@
+import { Fragment } from 'react'
+import Cart from './components/Cart/Cart'
+import Header from './components/Layout/Header'
+import Products from './components/Products/Products'
+
+import { useSelector } from 'react-redux'
+
 function App() {
-  return <h1>Hello</h1>;
+  const cartIsShow = useSelector(state => state.ui.cartIsShow)
+
+  return (
+    <Fragment>
+      <Header />
+      <main>
+        {cartIsShow && <Cart />}
+        <Products />
+      </main>
+    </Fragment>
+  )
 }
 
-export default App;
+export default App
