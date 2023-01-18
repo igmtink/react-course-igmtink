@@ -11,7 +11,7 @@ function App() {
   return (
     <Fragment>
       <Header />
-      <main>
+      <main className="py-4">
         {cartIsShow && <Cart />}
         <Products />
       </main>
