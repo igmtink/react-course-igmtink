@@ -1,10 +1,12 @@
 import { Button } from '../UI/IgmtInk'
 import { IoIosCart } from 'react-icons/io'
 
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { uiActions } from '../../store/ui-slice'
 
 const Header = props => {
+  // Getting the (totalQuantity) from (initialState) on (cart-slice) reducer
+  const totalQuantity = useSelector(state => state.cart.totalQuantity)
   const dispatch = useDispatch()
 
   const cartToggleHandler = () => {
@@ -22,7 +24,7 @@ const Header = props => {
           >
             <IoIosCart className="text-xl" />
             <span className="bg-cyan-500 rounded-full px-1.5 py-0.5 text-neutral-900">
-              0
+              {totalQuantity}
             </span>
           </Button>
         </nav>
