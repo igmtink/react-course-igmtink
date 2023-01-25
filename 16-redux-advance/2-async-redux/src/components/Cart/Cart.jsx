@@ -2,6 +2,8 @@ import { Button, Modal } from '../UI/IgmtInk'
 
 import { IoIosClose } from 'react-icons/io'
 
+import { useEffect } from 'react'
+
 import { useSelector, useDispatch } from 'react-redux'
 import { uiActions } from '../../store/ui-slice'
 

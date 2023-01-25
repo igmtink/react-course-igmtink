@@ -46,4 +46,31 @@ const TextArea = props => {
   return <textarea className={classes} {...props.attr} />
 }
 
-export { Section, Card, Modal, Button, Input, TextArea }
+////////// !OTHERS //////////
+const Notification = props => {
+  let status
+
+  switch (props.status) {
+    case 'Success':
+      status = 'bg-green-500'
+      break
+    case 'Error':
+      status = 'bg-red-500'
+      break
+    case 'Pending':
+      status = 'bg-yellow-500'
+      break
+    default:
+  }
+
+  return (
+    <div className={`fixed top-0 left-0 right-0 ${status} z-50 p-4`}>
+      <div className="flex justify-between">
+        <span>{props.title}</span>
+        <span>{props.message}</span>
+      </div>
+    </div>
+  )
+}
+
+export { Section, Card, Modal, Button, Input, TextArea, Notification }
