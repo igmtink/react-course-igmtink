@@ -20,7 +20,6 @@ export const fetchCartData = () => {
 
     try {
       const cartData = await fetchData()
-      console.log(cartData)
       dispatch(cartActions.replaceItemCart(cartData))
     } catch (error) {
       dispatch(

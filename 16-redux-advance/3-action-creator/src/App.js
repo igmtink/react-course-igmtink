@@ -14,7 +14,7 @@ function App() {
 
   // Destructuring (useSelector)
   const { cartIsShow, notification } = useSelector(state => state.ui)
-  const cart = useSelector(state => state.cart.items)
+  const cart = useSelector(state => state.cart)
 
   const dispatch = useDispatch()
 
@@ -24,7 +24,6 @@ function App() {
 
   // Everytime (cart) redux have a changes (useEffect) is will re-evaluate
   useEffect(() => {
-    console.log(isInitial)
     if (isInitial) {
       setIsInitial(false)
       return
