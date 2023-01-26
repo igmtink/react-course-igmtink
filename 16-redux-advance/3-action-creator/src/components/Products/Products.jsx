@@ -47,7 +47,7 @@ const Products = props => {
   ))
 
   return (
-    <Section className="h-screen p-4 pt-16">
+    <Section className="h-screen p-4">
       <ul className="w-full grid grid-cols-1 gap-2">{listItems}</ul>
     </Section>
   )

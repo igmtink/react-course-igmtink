@@ -13,6 +13,7 @@ const cartSlice = createSlice({
     addItemToCart(state, action) {
       // Return an (Object) if there's a lot of (Extra Data)
       const newItem = action.payload
+
       // Find if the (Item) is existed on (Items: []) from (initialState)
       const existingItem = state.items.find(item => item.id === newItem.id)
 
