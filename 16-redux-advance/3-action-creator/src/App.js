@@ -29,8 +29,10 @@ function App() {
       return
     }
 
-    // (Action Creator)
-    dispatch(sendCartData(cart))
+    if (cart.changed) {
+      // (Action Creator)
+      dispatch(sendCartData(cart))
+    }
   }, [cart, dispatch])
 
   return (

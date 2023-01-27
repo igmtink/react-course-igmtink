@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { items: [], totalQuantity: 0 }
+const initialState = { items: [], totalQuantity: 0, changed: false }
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -19,6 +19,8 @@ const cartSlice = createSlice({
 
       // Everytime we add a new or existing (Item) we increase also the (Total of Quantity) of the (Cart)
       state.totalQuantity++
+
+      state.changed = true
 
       // If the (Item) is not existed we add the (New Item)
       if (!existingItem) {
@@ -44,6 +46,8 @@ const cartSlice = createSlice({
 
       // Everytime we remove a (Item) we decrease also the (Total of Quantity) of the (Cart)
       state.totalQuantity--
+
+      state.changed = true
 
       // Check if that (Existed Item) is (quantity) is equal to (1)
       if (existingItem.quantity === 1) {
