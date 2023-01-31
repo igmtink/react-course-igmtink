@@ -11,7 +11,8 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     children: [
-      { path: '/', element: <Home /> },
+      // (index: true) is a special property it means this (Route Path) is the default (Route)
+      { index: true, element: <Home /> },
       { path: '/products', element: <Products /> },
       { path: '/products/:productId', element: <ProductDetail /> }
     ]
