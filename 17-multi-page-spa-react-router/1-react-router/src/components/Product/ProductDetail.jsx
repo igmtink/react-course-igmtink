@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const ProductDetail = props => {
   // For (Route Path) that have specific (Parameter) like (/products/:productId)
@@ -12,6 +12,11 @@ const ProductDetail = props => {
           Product Detail
         </h1>
         <h2>{params.productId}</h2>
+        <span className="underline text-red-500 hover:text-red-500/50">
+          <Link to=".." relative="path">
+            Back
+          </Link>
+        </span>
       </div>
     </section>
   )
