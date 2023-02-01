@@ -19,7 +19,7 @@ const Events = (props) => {
   const events = useLoaderData();
 
   return (
-    <Section className="grid grid-cols-1 gap-6 animate-slide-up">
+    <Section className="grid grid-cols-1 gap-6">
       <div className="flex justify-end items-center">
         <Link
           to="new"

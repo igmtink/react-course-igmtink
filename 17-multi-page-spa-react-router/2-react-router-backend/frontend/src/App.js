@@ -32,6 +32,7 @@ const router = createBrowserRouter([
           {
             path: ":eventId",
             element: <EventDetail />,
+            // (loader) is a function to fetch automatic the (data) without using (useEffect)
             loader: eventDetailLoader,
           },
           { path: "new", element: <NewEvent /> },

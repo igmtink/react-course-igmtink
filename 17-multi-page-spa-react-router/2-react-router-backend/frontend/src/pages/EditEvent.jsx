@@ -1,9 +1,11 @@
 import { Section } from "../components/UI/IgmtInk";
 
+import EventForm from "../components/Events/EventForm";
+
 const EditEvent = (props) => {
   return (
-    <Section className="animate-slide-up">
-      <h1>Edit Event</h1>
+    <Section className="grid grid-cols-1 gap-4">
+      <EventForm />
     </Section>
   );
 };

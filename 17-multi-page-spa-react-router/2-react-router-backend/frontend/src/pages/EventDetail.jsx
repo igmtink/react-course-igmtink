@@ -4,18 +4,27 @@ import { Section } from "../components/UI/IgmtInk";
 import EventItem from "../components/Events/EventItem";
 
 import { MdEdit } from "react-icons/md";
+import { BiArrowBack } from "react-icons/bi";
 
 const EventDetail = (props) => {
   const event = useLoaderData();
 
   return (
-    <Section className="animate-slide-up grid grid-cols-1 gap-6">
-      <Link to="edit" className="flex justify-end items-center">
-        <div className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 hover:bg-neutral-900/75 transition-colors rounded-md">
-          <MdEdit className="text-yellow-500" />
-          Edit
-        </div>
-      </Link>
+    <Section className="grid grid-cols-1 gap-6">
+      <div className="flex justify-between items-center">
+        <Link to=".." relative="path">
+          <div className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 hover:bg-neutral-900/75 transition-colors rounded-md">
+            <BiArrowBack />
+            Back
+          </div>
+        </Link>
+        <Link to="edit">
+          <div className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 hover:bg-neutral-900/75 transition-colors rounded-md">
+            <MdEdit className="text-yellow-500" />
+            Edit
+          </div>
+        </Link>
+      </div>
 
       <EventItem event={event} />
     </Section>
@@ -36,6 +45,6 @@ export const loader = async ({ request, params }) => {
     );
   } else {
     const resData = await response.json();
-    return resData;
+    return resData.event;
   }
 };

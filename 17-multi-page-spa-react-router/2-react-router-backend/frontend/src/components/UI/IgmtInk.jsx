@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 
 const Section = (props) => {
-  let classes = "mx-auto max-w-6xl " + props.className;
+  let classes = "animate-slide-up mx-auto max-w-6xl " + props.className;
   return <section className={classes}>{props.children}</section>;
 };
 
@@ -26,9 +26,7 @@ const Modal = (props) => {
 };
 
 const Button = (props) => {
-  let classes =
-    "transition-colors rounded-md px-4 py-2 font-bold bg-[#FFDB58] text-black " +
-    props.className;
+  let classes = "transition-colors rounded-md px-4 py-2 " + props.className;
   return (
     <button className={classes} {...props.attr}>
       {props.children}
