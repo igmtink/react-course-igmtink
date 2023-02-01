@@ -6,6 +6,9 @@ import Events from "./pages/Events";
 import NewEvent from "./pages/NewEvent";
 import EditEvent from "./pages/EditEvent";
 import EventDetail from "./pages/EventDetail";
+import EventsRoot from "./pages/EventsRoot";
+
+import { loader as eventsLoader } from "./components/Events/EventsList";
 
 const router = createBrowserRouter([
   {
@@ -17,15 +20,23 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/events",
-        element: <Events />,
+        path: "events",
+        element: <EventsRoot />,
+        children: [
+          {
+            index: true,
+            element: <Events />,
+            // (loader) is a function to fetch automatic the (data) without using (useEffect)
+            loader: eventsLoader,
+          },
+          {
+            path: ":eventId",
+            element: <EventDetail />,
+          },
+          { path: "new", element: <NewEvent /> },
+          { path: ":eventId/edit", element: <EditEvent /> },
+        ],
       },
-      {
-        path: "/events/:eventId",
-        element: <EventDetail />,
-      },
-      { path: "/events/new", element: <NewEvent /> },
-      { path: "/events/:eventId/edit", element: <EditEvent /> },
     ],
   },
 ]);

@@ -7,7 +7,9 @@ const Root = (props) => {
   return (
     <Fragment>
       <Header />
-      <Outlet />
+      <main className="p-4">
+        <Outlet />
+      </main>
     </Fragment>
   );
 };

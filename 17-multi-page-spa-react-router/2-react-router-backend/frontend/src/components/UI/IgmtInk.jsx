@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom";
 
 const Section = (props) => {
-  let classes = "p-4 mx-auto max-w-6xl " + props.className;
+  let classes = "mx-auto max-w-6xl " + props.className;
   return <section className={classes}>{props.children}</section>;
 };
 
 const Card = (props) => {
-  let classes = "p-4 rounded-md bg-neutral-900 shadow-xl " + props.className;
+  let classes = "rounded-md bg-neutral-900 shadow-xl " + props.className;
   return <div className={classes}>{props.children}</div>;
 };
 

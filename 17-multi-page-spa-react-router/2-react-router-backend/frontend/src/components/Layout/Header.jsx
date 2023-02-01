@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
   return (
-    <header className="bg-neutral-900">
+    <header className="bg-neutral-900 shadow-xl">
       <nav className="max-w-7xl mx-auto p-4">
         <ul className="flex justify-between items-center">
           <li>
@@ -19,7 +19,7 @@ const Header = (props) => {
           </li>
           <li>
             <NavLink
-              to="/events"
+              to="events"
               className={({ isActive }) =>
                 isActive
                   ? "text-yellow-500"
