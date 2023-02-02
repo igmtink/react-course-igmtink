@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
 import Home from "./pages/Home";
 import Events, { loader as eventsLoader } from "./pages/Events";
-import NewEvent, { action as newEventAction } from "./pages/NewEvent";
+import NewEvent from "./pages/NewEvent";
 import EditEvent from "./pages/EditEvent";
 import EventDetail, {
   loader as eventDetailLoader,
@@ -11,6 +11,8 @@ import EventDetail, {
 } from "./pages/EventDetail";
 import EventsRoot from "./pages/EventsRoot";
 import Error from "./pages/Error";
+import { action as requestEventAction } from "./components/Events/EventForm";
+import Newsletter, { action as newsletterAction } from "./pages/Newsleter";
 
 const router = createBrowserRouter([
   {
@@ -46,12 +48,21 @@ const router = createBrowserRouter([
                 element: <EventDetail />,
                 action: deleteEventAction,
               },
-              { path: "edit", element: <EditEvent /> },
+              {
+                path: "edit",
+                element: <EditEvent />,
+                action: requestEventAction,
+              },
             ],
           },
 
-          { path: "new", element: <NewEvent />, action: newEventAction },
+          { path: "new", element: <NewEvent />, action: requestEventAction },
         ],
+      },
+      {
+        path: "newsletter",
+        element: <Newsletter />,
+        action: newsletterAction,
       },
     ],
   },

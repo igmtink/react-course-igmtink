@@ -16,40 +16,45 @@ const NewEvent = (props) => {
           </div>
         </Link>
       </div>
-      <EventForm />
+      <EventForm method="post" />
     </Section>
   );
 };
 
 export default NewEvent;
 
-// (action) to add (Data)
-export const action = async ({ request, params }) => {
-  // To get the (Data) form (Form)
-  const data = await request.formData();
-
-  const eventData = {
-    title: data.get("title"),
-    image: data.get("image"),
-    date: data.get("date"),
-    description: data.get("description"),
-  };
-
-  // const enteredTitle = data.get('title')
-  // const enteredImage = data.get('image')
-  // const enteredDate = data.get('date')
-  // const enteredDescription = data.get('description')
-
-  const response = await fetch("http://localhost:8080/events", {
-    method: "POST",
-    // To send the (Data) correctly on the (Backend)
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(eventData),
-  });
-
-  if (!response.ok) {
-    throw json({ message: "Could not save event." }, { status: "500" });
-  }
-
-  return redirect("/events");
-};
+// // (action) to add (Data)
+// export const action = async ({ request, params }) => {
+//   // To get the (Data) form (Form)
+//   const data = await request.formData();
+//
+//   const eventData = {
+//     title: data.get("title"),
+//     image: data.get("image"),
+//     date: data.get("date"),
+//     description: data.get("description"),
+//   };
+//
+//   // const enteredTitle = data.get('title')
+//   // const enteredImage = data.get('image')
+//   // const enteredDate = data.get('date')
+//   // const enteredDescription = data.get('description')
+//
+//   const response = await fetch("http://localhost:8080/events", {
+//     method: "POST",
+//     // To send the (Data) correctly on the (Backend)
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(eventData),
+//   });
+//
+//   // (Validation)
+//   if (response.status === 422) {
+//     return response;
+//   }
+//
+//   if (!response.ok) {
+//     throw json({ message: "Could not save event." }, { status: "500" });
+//   }
+//
+//   return redirect("/events");
+// };

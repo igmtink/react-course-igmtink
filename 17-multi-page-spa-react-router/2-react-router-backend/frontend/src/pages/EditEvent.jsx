@@ -7,7 +7,7 @@ const EditEvent = (props) => {
   const event = useRouteLoaderData("event-detail");
   return (
     <Section className="grid grid-cols-1 gap-4">
-      <EventForm event={event} />
+      <EventForm method="patch" event={event} />
     </Section>
   );
 };

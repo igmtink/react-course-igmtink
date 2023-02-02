@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import NewsletterSignup from "../Newsletter/NewsletterSignup";
 
 const Header = (props) => {
   return (
@@ -17,17 +18,34 @@ const Header = (props) => {
               Home
             </NavLink>
           </li>
+          <div className="flex gap-4">
+            <li>
+              <NavLink
+                to="events"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-yellow-500"
+                    : "hover:text-yellow-500 transition-colors"
+                }
+              >
+                Events
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="newsletter"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-yellow-500"
+                    : "hover:text-yellow-500 transition-colors"
+                }
+              >
+                Newsletter
+              </NavLink>
+            </li>
+          </div>
           <li>
-            <NavLink
-              to="events"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-yellow-500"
-                  : "hover:text-yellow-500 transition-colors"
-              }
-            >
-              Events
-            </NavLink>
+            <NewsletterSignup />
           </li>
         </ul>
       </nav>
