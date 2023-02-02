@@ -3,14 +3,18 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
 import Home from "./pages/Home";
 import Events, { loader as eventsLoader } from "./pages/Events";
-import NewEvent from "./pages/NewEvent";
+import NewEvent, { action as newEventAction } from "./pages/NewEvent";
 import EditEvent from "./pages/EditEvent";
-import EventDetail, { loader as eventDetailLoader } from "./pages/EventDetail";
+import EventDetail, {
+  loader as eventDetailLoader,
+  action as deleteEventAction,
+} from "./pages/EventDetail";
 import EventsRoot from "./pages/EventsRoot";
 import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
+    // (Root Route) of (Root)
     path: "/",
     element: <Root />,
     errorElement: <Error />,
@@ -20,8 +24,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        // (Root Route) of (Events) we don't need a element here because we are not sharing an(Page or Components)
         path: "events",
-        element: <EventsRoot />,
         children: [
           {
             index: true,
@@ -29,14 +33,24 @@ const router = createBrowserRouter([
             // (loader) is a function to fetch automatic the (data) without using (useEffect)
             loader: eventsLoader,
           },
+          // (Root Route) of (:eventId) so that the (loader) we automatically execute whenever we visit any (Page) children of our (Root Route) which is (:eventId)
+          // (id) we need this because we are using different (custom hooks) to load our data from (loader) because our (loader) is in (Root Route)
           {
             path: ":eventId",
-            element: <EventDetail />,
+            id: "event-detail",
             // (loader) is a function to fetch automatic the (data) without using (useEffect)
             loader: eventDetailLoader,
+            children: [
+              {
+                index: true,
+                element: <EventDetail />,
+                action: deleteEventAction,
+              },
+              { path: "edit", element: <EditEvent /> },
+            ],
           },
-          { path: "new", element: <NewEvent /> },
-          { path: ":eventId/edit", element: <EditEvent /> },
+
+          { path: "new", element: <NewEvent />, action: newEventAction },
         ],
       },
     ],

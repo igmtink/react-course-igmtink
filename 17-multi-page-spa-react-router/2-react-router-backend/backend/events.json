@@ -1,18 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    },
-    {
-      "id": "e2",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"A dummy event #4","image":"https://1.bp.blogspot.com/-_nbO32leqWA/WJBH_fUx04I/AAAAAAAAGQs/OKWIRkFZ3xYXPY58ilspN-2Y_uSKVLEaQCLcB/s640/8xlapfnmw04-yvette-de-wit.jpg","date":"2023-02-08","description":"Another awesome event.","id":"56f75392-6de7-467a-abd5-567ee5d67885"},{"title":"A dummy event #3","image":"http://www.fedracongressi.com/fedra/wp-content/uploads/2016/02/revelry-event-designers-homepage-slideshow-38.jpeg","date":"2023-02-05","description":"Some awesome event.","id":"9cb33e39-4388-4115-88c6-e4c4d63c0379"},{"id":"e1","title":"A dummy event #1","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."},{"id":"e2","title":"A dummy event #2","date":"2023-02-14","image":"https://media-exp1.licdn.com/dms/image/C4D1BAQFAC3o2eHS_vA/company-background_10000/0/1565182814457?e=2147483647&v=beta&t=sCkDT2L5namPFKkbA-3Heuv_MiVew4iK7JfnBingAmo","description":"Join this amazing event and connect with fellow developers."}]}

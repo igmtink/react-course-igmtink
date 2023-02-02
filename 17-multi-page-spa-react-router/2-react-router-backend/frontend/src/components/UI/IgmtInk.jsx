@@ -6,7 +6,8 @@ const Section = (props) => {
 };
 
 const Card = (props) => {
-  let classes = "rounded-md bg-neutral-900 shadow-xl " + props.className;
+  let classes =
+    "overflow-hidden rounded-md bg-neutral-900 shadow-xl " + props.className;
   return <div className={classes}>{props.children}</div>;
 };
 
