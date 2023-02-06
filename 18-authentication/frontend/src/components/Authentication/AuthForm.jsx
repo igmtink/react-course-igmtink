@@ -1,4 +1,10 @@
-import { Link, useSearchParams } from "react-router-dom";
+import {
+  Form,
+  Link,
+  useActionData,
+  useNavigation,
+  useSearchParams,
+} from "react-router-dom";
 import { Button } from "../UI/IgmtInk";
 
 const AuthForm = (props) => {
@@ -8,10 +14,23 @@ const AuthForm = (props) => {
   // !To get the (Query Parameter)
   const isLogin = searchParams.get("mode") === "login";
 
+  const data = useActionData();
+
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   return (
     <div className="flex justify-center w-full">
-      <div className="grid grid-cols-1 gap-4 w-full max-w-md">
+      <Form method="post" className="grid grid-cols-1 gap-4 w-full max-w-md">
         <h1 className="font-bold text-2xl">{isLogin ? "Log In" : "Sign Up"}</h1>
+        {data && data.errors && (
+          <ul>
+            {Object.values(data.errors).map((err) => (
+              <li key={err}>{err}</li>
+            ))}
+          </ul>
+        )}
+        {data && data.message && <p>{data.message}</p>}
         <div className="grid grid-cols-1 gap-2">
           <input
             className="w-full bg-neutral-900 p-2 rounded-md"
@@ -35,12 +54,15 @@ const AuthForm = (props) => {
               </Link>
             </div>
 
-            <Button className="bg-yellow-500 text-neutral-900 hover:bg-yellow-500/75">
-              {isLogin ? "Log In" : "Sign Up"}
+            <Button
+              attr={{ disabled: isSubmitting }}
+              className="bg-yellow-500 text-neutral-900 hover:bg-yellow-500/75"
+            >
+              {isSubmitting ? "Submitting..." : isLogin ? "Log In" : "Sign Up"}
             </Button>
           </div>
         </div>
-      </div>
+      </Form>
     </div>
   );
 };

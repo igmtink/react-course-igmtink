@@ -9,6 +9,8 @@ import {
   useActionData,
 } from "react-router-dom";
 
+import { getAuthToken } from "../../util/auth";
+
 const EventForm = ({ method, event }) => {
   const navigate = useNavigate();
   // !To monitor (Form) currently (State)
@@ -111,10 +113,15 @@ export const action = async ({ request, params }) => {
     url = "http://localhost:8080/events/" + eventId;
   }
 
+  const token = getAuthToken();
+
   const response = await fetch(url, {
     method: method,
     // To send the (Data) correctly on the (Backend)
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
     body: JSON.stringify(eventData),
   });
 

@@ -3,7 +3,14 @@ import EventsList from "../components/Events/EventsList";
 
 import { BsPlusCircleFill } from "react-icons/bs";
 
-import { Link, useLoaderData, json, defer, Await } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  json,
+  defer,
+  Await,
+  useRouteLoaderData,
+} from "react-router-dom";
 import { Suspense } from "react";
 
 // const EVENTS = [
@@ -18,17 +25,20 @@ import { Suspense } from "react";
 const Events = (props) => {
   // !(useLoaderData) to get the (data) from (loader)
   const { events } = useLoaderData();
+  const token = useRouteLoaderData("root");
 
   return (
     <Section className="grid grid-cols-1 gap-6">
       <div className="flex justify-end items-center">
-        <Link
-          to="new"
-          className="flex gap-2 justify-center items-center px-4 py-2 bg-neutral-900 rounded-md hover:bg-neutral-900/75 transition-colors shadow-md"
-        >
-          <BsPlusCircleFill className="text-yellow-500" />
-          New
-        </Link>
+        {token && (
+          <Link
+            to="new"
+            className="flex gap-2 justify-center items-center px-4 py-2 bg-neutral-900 rounded-md hover:bg-neutral-900/75 transition-colors shadow-md"
+          >
+            <BsPlusCircleFill className="text-yellow-500" />
+            New
+          </Link>
+        )}
       </div>
       {/* !(Suspense) to show a fallback while we're waiting for other (data) to arrive */}
       <Suspense fallback={<span className="text-center">Loading...</span>}>

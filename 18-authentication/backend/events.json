@@ -1,12 +1,1 @@
-{
-  "events": [
-    {
-      "title": "A new event",
-      "image": "https://cdn.muenchen-p.de/fl_progressive,q_65/.imaging/stk/responsive/teaser300/dms/va-2016/muenchner-christkindlmarkt/christkindlmarkt-marienplat-logo-hp/document/christkindlmarkt-marienplat-logo-hp.jpg",
-      "date": "2022-10-01",
-      "description": "Some awesome event!",
-      "id": "2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"
-    }
-  ],
-  "users": []
-}
+{"events":[{"title":"Entertainment","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","date":"2023-02-22","description":"Join this amazing event and connect with fellow developers.","id":"e1"},{"id":"e2","title":"A dummy event #2","date":"2023-02-14","image":"https://media-exp1.licdn.com/dms/image/C4D1BAQFAC3o2eHS_vA/company-background_10000/0/1565182814457?e=2147483647&v=beta&t=sCkDT2L5namPFKkbA-3Heuv_MiVew4iK7JfnBingAmo","description":"Join this amazing event and connect with fellow developers."}],"users":[{"email":"test@gmail.com","password":"$2a$12$yHQi/qcSekJolP2BGRi5uunbqUQsMhrVS1/JBWaDFtC0i5GJGjT6K","id":"12047bf0-9072-4f3e-a7a0-97c234116479"}]}

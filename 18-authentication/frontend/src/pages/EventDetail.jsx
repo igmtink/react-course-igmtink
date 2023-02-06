@@ -13,9 +13,13 @@ import { MdEdit } from "react-icons/md";
 import { BiArrowBack } from "react-icons/bi";
 import { TiDelete } from "react-icons/ti";
 
+import { getAuthToken } from "../util/auth";
+
 const EventDetail = (props) => {
   // (useRouteLoaderData) to get the (data) from (Root Router Loader) by (id)
   const event = useRouteLoaderData("event-detail");
+  const token = useRouteLoaderData("root");
+
   // (useSubmit) for programmatically execute the (action loader) of (Route React)
   const submit = useSubmit();
 
@@ -37,20 +41,22 @@ const EventDetail = (props) => {
             Back
           </div>
         </Link>
-        <div className="flex gap-2">
-          <Button
-            attr={{ onClick: deleteEventHandler }}
-            className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 hover:bg-neutral-900/75 transition-colors rounded-md"
-          >
-            <TiDelete className="text-yellow-500" /> Delete
-          </Button>
-          <Link to="edit">
-            <div className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 hover:bg-neutral-900/75 transition-colors rounded-md">
-              <MdEdit className="text-yellow-500" />
-              Edit
-            </div>
-          </Link>
-        </div>
+        {token && (
+          <div className="flex gap-2">
+            <Button
+              attr={{ onClick: deleteEventHandler }}
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 hover:bg-neutral-900/75 transition-colors rounded-md"
+            >
+              <TiDelete className="text-yellow-500" /> Delete
+            </Button>
+            <Link to="edit">
+              <div className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 hover:bg-neutral-900/75 transition-colors rounded-md">
+                <MdEdit className="text-yellow-500" />
+                Edit
+              </div>
+            </Link>
+          </div>
+        )}
       </div>
 
       <EventItem event={event} />
@@ -77,11 +83,20 @@ export const loader = async ({ request, params }) => {
 };
 
 // (action) to delete (Data)
-export const action = async ({ params }) => {
+export const action = async ({ params, request }) => {
   const eventId = params.eventId;
 
+  // !Function (util) that getting the (token) from (localStorage)
+  const token = getAuthToken();
+
+  console.log(token);
+  console.log(eventId);
+
   const response = await fetch("http://localhost:8080/events/" + eventId, {
-    method: "DELETE",
+    method: request.method,
+    headers: {
+      Authorization: "Bearer " + token,
+    },
   });
 
   if (!response.ok) {
