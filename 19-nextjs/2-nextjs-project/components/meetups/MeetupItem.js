@@ -1,6 +1,14 @@
+import { useRouter } from "next/router";
 import { Card } from "../ui/igmtink";
 
 const MeetupItem = (props) => {
+  const router = useRouter();
+
+  const showDetailHander = () => {
+    // (router.push) programmatically navigation like (Link)
+    router.push("/" + props.id);
+  };
+
   return (
     <Card className="flex overflow-hidden">
       <img className="w-1/2" src={props.image} alt={props.title} />
@@ -10,7 +18,10 @@ const MeetupItem = (props) => {
           <h2 className="text-sm">{props.address}</h2>
         </di>
 
-        <button className="rounded-md bg-neutral-900 text-white px-4 py-2">
+        <button
+          onClick={showDetailHander}
+          className="rounded-md bg-neutral-900 text-white px-4 py-2"
+        >
           Show Detail
         </button>
       </div>
