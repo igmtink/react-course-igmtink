@@ -1,7 +1,6 @@
 import MeetupList from "../components/meetups/MeetupList";
 import Head from "next/head";
 import { Section } from "@/components/ui/igmtink";
-import Link from "next/link";
 
 export default function Home() {
   const DUMMY_DB = [
@@ -29,17 +28,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="p-4">
-        <Section className="grid grid-cols-1 gap-4">
-          <Link
-            href="/new-meetup"
-            className="text-white bg-neutral-900 rounded-md px-4 py-2 w-fit justify-self-end"
-          >
-            New
-          </Link>
-          <MeetupList meetups={DUMMY_DB} />
-        </Section>
-      </main>
+      <Section className="grid grid-cols-1 gap-8">
+        <h1 className="text-2xl font-bold text-center uppercase">
+          All Meetups
+        </h1>
+        <MeetupList meetups={DUMMY_DB} />
+      </Section>
     </>
   );
 }
