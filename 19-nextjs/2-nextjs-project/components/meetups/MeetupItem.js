@@ -4,7 +4,7 @@ import { Card } from "../ui/igmtink";
 const MeetupItem = (props) => {
   const router = useRouter();
 
-  const showDetailHander = () => {
+  const meetupDetailHander = () => {
     // (router.push) programmatically navigation like (Link)
     router.push("/" + props.id);
   };
@@ -19,7 +19,7 @@ const MeetupItem = (props) => {
         </di>
 
         <button
-          onClick={showDetailHander}
+          onClick={meetupDetailHander}
           className="rounded-md bg-neutral-900 text-white px-4 py-2"
         >
           Show Detail
