@@ -13,10 +13,10 @@ const MeetupItem = (props) => {
     <Card className="flex overflow-hidden">
       <img className="w-1/2" src={props.image} alt={props.title} />
       <div className="p-4 grid grid-cols-1 gap-2">
-        <di>
+        <div>
           <h1 className="text-lg font-bold">{props.title}</h1>
           <h2 className="text-sm">{props.address}</h2>
-        </di>
+        </div>
 
         <button
           onClick={meetupDetailHander}

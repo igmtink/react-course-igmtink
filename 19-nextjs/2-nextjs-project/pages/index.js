@@ -2,24 +2,30 @@ import MeetupList from "../components/meetups/MeetupList";
 import Head from "next/head";
 import { Section } from "@/components/ui/igmtink";
 
-export default function Home() {
-  const DUMMY_DB = [
-    {
-      id: "m1",
-      title: "A First Meetup",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Vue_de_nuit_de_la_Place_Stanislas_%C3%A0_Nancy.jpg/1200px-Vue_de_nuit_de_la_Place_Stanislas_%C3%A0_Nancy.jpg",
-      address: "Some address 5, 12345 Some City",
-    },
-    {
-      id: "m2",
-      title: "A Second Meetup",
-      image:
-        "https://www.le-lorrain.fr/files/uploads/2015/07/nancy-770x400.jpg",
-      address: "Some address 5, 12345 Some City",
-    },
-  ];
+const DUMMY_DB = [
+  {
+    id: "m1",
+    title: "A First Meetup",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Vue_de_nuit_de_la_Place_Stanislas_%C3%A0_Nancy.jpg/1200px-Vue_de_nuit_de_la_Place_Stanislas_%C3%A0_Nancy.jpg",
+    address: "Some address 5, 12345 Some City",
+  },
+  {
+    id: "m2",
+    title: "A Second Meetup",
+    image: "https://www.le-lorrain.fr/files/uploads/2015/07/nancy-770x400.jpg",
+    address: "Some address 5, 12345 Some City",
+  },
+  {
+    id: "m3",
+    title: "A Third Meetup",
+    image:
+      "https://images.pexels.com/photos/257499/pexels-photo-257499.jpeg?cs=srgb&dl=pexels-pixabay-257499.jpg&fm=jpg",
+    address: "Some address 5, 12345 Some City",
+  },
+];
 
+export default function Home(props) {
   return (
     <>
       <Head>
@@ -32,8 +38,39 @@ export default function Home() {
         <h1 className="text-2xl font-bold text-center uppercase">
           All Meetups
         </h1>
-        <MeetupList meetups={DUMMY_DB} />
+        {/* !(props.meetups) that we got from (getStaticProps) */}
+        <MeetupList meetups={props.meetups} />
       </Section>
     </>
   );
 }
+
+// !Pre-rendered
+// !(getStaticProps) handle all (Data) before executing the (Page / Components)
+// !This is a (Backend) it will not reach their machines (Client or Server) side
+
+// !This is how we manage (Data) in (NextJS), we don't use (useEffect)
+// !Using (useEffect) is like we render the (Page / Components) two times to get the (Data)
+// !Using (getStaticProps) before the (Page / Components) render we pre-rendered first (getStaticProps) to get the (Data)
+export async function getStaticProps() {
+  // !It always return an {object}
+  return {
+    // !It has to be named (props) and hold another {object} which will be the (props object) we will be received in our (Page / Components)
+    props: {
+      meetups: DUMMY_DB,
+    },
+    // !(revalidate) called (Incremental Static Generation), we need (revalidate) to fetch new (Data) incoming request
+    // !(10) is a number of seconds (NextJS) will wait until it regenerates this (Page / Components) for an incoming request
+    revalidate: 1,
+  };
+}
+
+// !(getServerSideProps) alternative of (getStaticProps)
+// !This we don't need (revalidate), the (Page / Components) will always regenerates every incoming request
+// export async function getServerSideProps() {
+// return {
+// props: {
+// meetups: DUMMY_DB,
+// },
+// };
+// }
