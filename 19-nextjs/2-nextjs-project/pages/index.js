@@ -2,28 +2,7 @@ import MeetupList from "../components/meetups/MeetupList";
 import Head from "next/head";
 import { Section } from "@/components/ui/igmtink";
 
-const DUMMY_DB = [
-  {
-    id: "m1",
-    title: "A First Meetup",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Vue_de_nuit_de_la_Place_Stanislas_%C3%A0_Nancy.jpg/1200px-Vue_de_nuit_de_la_Place_Stanislas_%C3%A0_Nancy.jpg",
-    address: "Some address 5, 12345 Some City",
-  },
-  {
-    id: "m2",
-    title: "A Second Meetup",
-    image: "https://www.le-lorrain.fr/files/uploads/2015/07/nancy-770x400.jpg",
-    address: "Some address 5, 12345 Some City",
-  },
-  {
-    id: "m3",
-    title: "A Third Meetup",
-    image:
-      "https://images.pexels.com/photos/257499/pexels-photo-257499.jpeg?cs=srgb&dl=pexels-pixabay-257499.jpg&fm=jpg",
-    address: "Some address 5, 12345 Some City",
-  },
-];
+import { MongoClient } from "mongodb";
 
 export default function Home(props) {
   return (
@@ -53,11 +32,28 @@ export default function Home(props) {
 // !Using (useEffect) is like we render the (Page / Components) two times to get the (Data)
 // !Using (getStaticProps) before the (Page / Components) render we pre-rendered first (getStaticProps) to get the (Data)
 export async function getStaticProps() {
+  const client = await MongoClient.connect(
+    "mongodb+srv://admin-test:admintest@testdb.ugiukba.mongodb.net/?retryWrites=true&w=majority"
+  );
+  const db = client.db();
+
+  const meetupCollection = db.collection("meetups");
+
+  // !To get all (Data) from (MongoDB)
+  const meetups = await meetupCollection.find().toArray();
+
+  client.close();
+
   // !It always return an {object}
   return {
     // !It has to be named (props) and hold another {object} which will be the (props object) we will be received in our (Page / Components)
     props: {
-      meetups: DUMMY_DB,
+      meetups: meetups.map((meetup) => ({
+        title: meetup.title,
+        image: meetup.image,
+        address: meetup.address,
+        id: meetup._id.toString(),
+      })),
     },
     // !(revalidate) called (Incremental Static Generation), we need (revalidate) to fetch new (Data) incoming request
     // !(10) is a number of seconds (NextJS) will wait until it regenerates this (Page / Components) for an incoming request
